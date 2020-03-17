@@ -38,7 +38,13 @@ export default {
                     })
                     .then((res) => {
                         if (res.status == 1) {
-                            this.$toast('验证码发送成功')
+                            this.$toast.success({
+                                message: '登录成功',
+                                duration: 2000,
+                                forbidClick:true,
+                                onClose: () => {
+                                }
+                            });
                             this.time = 60; //显示倒计时
                             var auth_timetimer = setInterval(() => {
                                 this.time--;

@@ -21,13 +21,13 @@ axios.interceptors.request.use(config =>{
     // config.headers['token'] = 'c5d1b483-18c8-4690-b829-48b8f525f527';
     
     // loading
-    Toast.loading({
-        // icon: require('../images/icons/loading.gif'),
-        duration: 0, // 持续展示 toast
-        forbidClick: true, // 禁用背景点击
-        mask: false, // 是否显示遮罩层
-        // message: '数据加载中...',
-    });
+    // Toast.loading({
+    //     // icon: require('../images/icons/loading.gif'),
+    //     duration: 0, // 持续展示 toast
+    //     forbidClick: true, // 禁用背景点击
+    //     mask: false, // 是否显示遮罩层
+    //     // message: '数据加载中...',
+    // });
     
     // 特定接口不显示数据加载中
     // if (config.url.includes('/api/mobile/index.php?w=member_favorites&t=favorites_add')) {
@@ -65,24 +65,22 @@ axios.interceptors.response.use(
             switch (error.response.status) {
                 // 404请求不存在
                 case 404:
-                    Toast({
-                        message: '网络请求不存在',
-                        duration: 1500,
+                    Toast.fail({
+                        message: "网络请求不存在",
+                        duration: 2000,
                         forbidClick: true
                     });
                     break;
-    
                 case 500:
-                    Toast({
+                    Toast.fail({
                         message: '内部服务器错误',
                         duration: 1500,
                         forbidClick: true
                     });
                     break;
-    
                     // 其他错误，直接抛出错误提示
                 default:
-                    Toast({
+                    Toast.fail({
                         message: error.response.data.msg,
                         duration: 1500,
                         forbidClick: true
@@ -119,7 +117,7 @@ export function get(url, params) {
  * @param {String} url [请求的url地址]
  * @param {Object} params [请求时携带的参数]
  */
-export function post(url, param = {}) {
+export function post(url, params = {}) {
     let token = localStorage.getItem('token') || '';
     
     if (params.__proto__.constructor.name == "Object") {
@@ -133,9 +131,10 @@ export function post(url, param = {}) {
         axios.post(url, params).then(res => {
             Toast.clear();
             if (res.data.status == -1) {
-                Toast({
+                Toast.fail({
                     message: "登录过期，请重新登录!",
-                    duration: 2000
+                    duration: 2000,
+                    forbidClick: true
                 });
                 localStorage.clear();
                 setTimeout(() => {
@@ -148,9 +147,10 @@ export function post(url, param = {}) {
                 }, 1000);
                 return;
             } else if (res.data.status == 0) {
-                Toast({
+                Toast.fail({
                     message: res.data.msg,
-                    duration: 2000
+                    duration: 2000,
+                    forbidClick: true
                 });
                 resolve(res.data)
             }else{
@@ -160,19 +160,22 @@ export function post(url, param = {}) {
         .catch(error => {
             Toast.clear();
             if (error.code == 'ECONNABORTED' && error.message.indexOf('timeout') != -1) {
-                Toast({
+                Toast.fail({
                     message: '请求超时,请稍后重试!',
-                    duration: 2000
+                    duration: 2000,
+                    forbidClick: true
                 });
             } else if (error.message == 'Network Error') {
-                Toast({
+                Toast.fail({
                     message: '请求超时,请稍后重试!',
-                    duration: 2000
+                    duration: 2000,
+                    forbidClick: true
                 });
             }else{
-                Toast({
+                Toast.fail({
                     message: '网络请求错误',
-                    duration: 2000
+                    duration: 2000,
+                    forbidClick: true
                 });
             }
             reject(error.data)

@@ -75,8 +75,8 @@ router.beforeEach((to, from, next) => {
 
 //离开路由之后 如果有弹窗 就清除
 router.afterEach((to, from) => {
-    if (window.vms) {
-        window.vms.$toast.clear();
+    if (window.vm) {
+        window.vm.$toast.clear();
     }
 })
 

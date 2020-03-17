@@ -1,49 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="cn">
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-	<title>demo</title>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta id="viewport" name="viewport" content="width=device-width,height=device-height,user-scalable=no, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <title>demo</title>
+    </head>
 
-<body>
-	<div id="app"></div>
-</body>
+    <body>
+        <div id="app"></div>
+    </body>
 
-<script>
-window.onresize = function() {
-	//输入框获取焦点时;保证输入框在可视区内;
-	document.activeElement.scrollIntoView(false);
-}
+    <script>
+        window.onresize = function() {
+            //输入框获取焦点时;保证输入框在可视区内;
+            document.activeElement.scrollIntoView(false);
+        }
 
-/**
- * 在一级页面按两次退出app;
- */
-// var mkeyTime = 0;
-// window.history.pushState(null, null, location.href);
-// window.addEventListener("popstate", function(e) {
-// 	// console.log(vm.$route);
-// 	if (vm.$route.path == "/login" || vm.$route.path == "/home" || vm.$route.path == "/wallet" || vm.$route.path == "/pool" || vm.$route.path == "/mine") {
-// 		if (window.back == false) {
-// 			window.back = true;
-// 			window.history.pushState(null, null, "#");
-// 		} else {
-// 			window.history.pushState(null, null, "#");
-// 			if (new Date().getTime() - mkeyTime > 2000) {
-// 				let lang = vm.$store.state.currentLang || "zhCHS";
-// 				vm.$toast("再按一次退出程序");
-// 				mkeyTime = new Date().getTime();
-// 			} else {
-// 				/*调用原生方法*/
-// 				vm.demo.finishApp();
-// 			}
-// 		}
-// 	}
-// 	return false;
-// });
-
-</script>
+        /**
+         * 在一级页面按两次退出app;
+         */
+        // var mkeyTime = 0;
+        // window.history.pushState(null, null, location.href);
+        // window.addEventListener("popstate", function(e) {
+        // 	// console.log(vm.$route);
+        // 	if (vm.$route.path == "/login" || vm.$route.path == "/home" || vm.$route.path == "/wallet" || vm.$route.path == "/pool" || vm.$route.path == "/mine") {
+        // 		if (window.back == false) {
+        // 			window.back = true;
+        // 			window.history.pushState(null, null, "#");
+        // 		} else {
+        // 			window.history.pushState(null, null, "#");
+        // 			if (new Date().getTime() - mkeyTime > 2000) {
+        // 				let lang = vm.$store.state.currentLang || "zhCHS";
+        // 				vm.$toast("再按一次退出程序");
+        // 				mkeyTime = new Date().getTime();
+        // 			} else {
+        // 				/*调用原生方法*/
+        // 				vm.demo.finishApp();
+        // 			}
+        // 		}
+        // 	}
+        // 	return false;
+        // });
+    </script>
 
 </html>

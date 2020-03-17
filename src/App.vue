@@ -46,7 +46,6 @@
                     }
                 } else {
                     let statusBarHeight = 0;
-                    // this.demo.statusHeight();
                     this.$store.commit('setStatusBarHeight', statusBarHeight)
                     return statusBarHeight;
                 }
@@ -56,34 +55,20 @@
                 let statusBarHeight = this.getStatusBarHeight();
                 let head = document.head || document.getElementsByTagName('head')[0];
                 let styleElement = document.createElement('style');
-                var interval = setInterval(() => {
-                    // var sbh = this.demo.statusHeight();
-                    var sbh = 27;
-                    if (sbh) {
-                        // let css =
-                        //     `html{padding-top:${sbh}px}.page-header{padding-top:${statusBarHeight}px}.page-header .status-bar{height:${statusBarHeight}px}.page-body{border-top:${statusBarHeight}px solid transparent}}`;
-                        let css = `.page-header{padding-top:${statusBarHeight}px}.page-header .status-bar{height:${statusBarHeight}px}.page-body{border-top:${statusBarHeight}px solid transparent}}`;
-                        styleElement.type = 'text/css';
-                        if (styleElement.styleSheet) {
-                            styleElement.styleSheet.cssText = css;
-                        } else {
-                            styleElement.appendChild(document.createTextNode(css))
-                        }
-                        head.appendChild(styleElement);
-                        clearInterval(interval);
-                    }
-                }, 50)
-                setTimeout(() => {
-                    clearInterval(interval);
-                }, 3000)
+                let css = `.page-header{padding-top:${statusBarHeight}px}.page-header .status-bar{height:${statusBarHeight}px}.page-header+.page-body{border-top:${statusBarHeight}px solid transparent}}`;
+                styleElement.type = 'text/css';
+                if (styleElement.styleSheet) {
+                  styleElement.styleSheet.cssText = css;
+                } else {
+                  styleElement.appendChild(document.createTextNode(css))
+                }
+                head.appendChild(styleElement);
             }
         },
         watch: {
             '$route'(toPage, fromPage) {
                 let toPageRouteLevel = toPage.meta.routeLevel;
                 let fromPageRouteLevel = fromPage.meta.routeLevel;
-
-
                 if (toPageRouteLevel == fromPageRouteLevel || fromPage.fullPath == '/') {
                     //路由层级相同,或者是首次加载;
                     this.transitionName = '';

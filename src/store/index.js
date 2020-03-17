@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-// import createPersistedState from 'vuex-persistedstate'; //持久化vuex状态;
+import createPersistedState from 'vuex-persistedstate'; //持久化vuex状态;
 Vue.use(Vuex);
 const store = new Vuex.Store({
     // strict: process.env.NODE_ENV !== 'production',

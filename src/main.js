@@ -26,6 +26,11 @@ Vue.component('mescroll-vue', MescrollVue);
 import VueClipboard from 'vue-clipboard2';
 Vue.use(VueClipboard)
 
+// 轮播插件
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
+Vue.use(VueAwesomeSwiper)
+
 //按需引入vant;
 import {
     // 提示类，弹出类
